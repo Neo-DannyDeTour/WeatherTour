@@ -630,6 +630,7 @@ fun WeatherScreen() {
     var showAddPlaceDialog by remember { mutableStateOf(false) }
     var showRuleDialog by remember { mutableStateOf(false) }
     var ruleBeingEdited by remember { mutableStateOf<WeatherRule?>(null) }
+    var showAboutDialog by remember { mutableStateOf(false) }
 
     fun updateTrackedPlaces(newList: List<PlaceLocation>) {
         trackedPlaces = newList
@@ -717,6 +718,14 @@ fun WeatherScreen() {
                     titleContentColor = Color.White
                 ),
                 actions = {
+                    IconButton(
+                        onClick = {
+                            println("WeatherScreen: Opening About dialog")
+                            showAboutDialog = true
+                        }
+                    ) {
+                        Text("ℹ️", fontSize = 18.sp)
+                    }
                     OutlinedButton(
                         onClick = { refreshAllWeather() },
                         enabled = !isLoading,
@@ -999,6 +1008,82 @@ fun WeatherScreen() {
                 onDeleteNote = { noteId -> deleteCalendarNote(noteId) }
             )
         }
+    }
+
+    if (showAboutDialog) {
+        AlertDialog(
+            onDismissRequest = { showAboutDialog = false },
+            containerColor = Color(0xFF0D0D0D),
+            titleContentColor = Color.White,
+            textContentColor = Color(0xFFCCCCCC),
+            title = {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text("WeatherTour", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                    Surface(
+                        color = Color(0xFF1E2838),
+                        shape = RoundedCornerShape(6.dp)
+                    ) {
+                        Text(
+                            text = "v1.0.0",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+                        )
+                    }
+                }
+            },
+            text = {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(14.dp)
+                ) {
+                    Card(
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFF161616)),
+                        border = BorderStroke(1.dp, Color(0xFF262626)),
+                        shape = RoundedCornerShape(10.dp)
+                    ) {
+                        Text(
+                            text = "\"I used to look at my thermometer and didn't know what to wear to enjoy my time outside. Now I can see the numbers and corresponding comments. Why two places? I like to hike and want to know the temperature at my destination. The comment section exists so I can see what was happening previously at the same date.\"",
+                            fontSize = 13.sp,
+                            lineHeight = 19.sp,
+                            color = Color(0xFFE0E0E0),
+                            modifier = Modifier.padding(12.dp)
+                        )
+                    }
+
+                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text("Core Capabilities", fontWeight = FontWeight.Bold, fontSize = 14.sp, color = Color.White)
+                        Text("• Pure AMOLED black interface with minimal battery drain", fontSize = 12.sp, color = Color(0xFFB0B0B0))
+                        Text("• Customizable weather rules with emoji clothing tags", fontSize = 12.sp, color = Color(0xFFB0B0B0))
+                        Text("• Multi-destination comparison with drag & drop reordering", fontSize = 12.sp, color = Color(0xFFB0B0B0))
+                        Text("• 3-way location picker: Map, search & direct coordinates", fontSize = 12.sp, color = Color(0xFFB0B0B0))
+                        Text("• Date-linked calendar notes for hiking & trip history", fontSize = 12.sp, color = Color(0xFFB0B0B0))
+                    }
+
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text("Privacy & License", fontWeight = FontWeight.Bold, fontSize = 14.sp, color = Color.White)
+                        Text("100% client-side storage. Zero telemetry, tracking, or ads.", fontSize = 12.sp, color = Color(0xFF81C995))
+                        Text("Licensed under the MIT License • Copyright © 2026 UnrealDanny", fontSize = 11.sp, color = Color(0xFF888888))
+                    }
+                }
+            },
+            confirmButton = {
+                Button(
+                    onClick = { showAboutDialog = false },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Text("Close", color = Color.Black, fontWeight = FontWeight.SemiBold)
+                }
+            }
+        )
     }
 
     if (showAddPlaceDialog) {
