@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Green Border: Positioned inside the 66dp safe zone so masks don't clip it -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#00FF9D"
+        android:strokeWidth="2.0"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M36,21 H72 A15,15 0 0,1 87,36 V72 A15,15 0 0,1 72,87 H36 A15,15 0 0,1 21,72 V36 A15,15 0 0,1 36,21 Z" />
+
+    <!-- Cloud & Thermometer Group: Shifted right by +2.5 to be perfectly centered within the frame -->
+    <group
+        android:name="cloud_and_thermometer"
+        android:translateX="2.5">
+
+        <!-- Cloud: Simple White Line (Outline only) -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2.2"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M33,64 C29.1,64 26,60.9 26,57 C26,53.6 28.4,50.7 31.7,50.1 C31.5,49.2 31.4,48.2 31.4,47.3 C31.4,41 36.5,36 42.8,36 C47.7,36 51.9,39.1 53.5,43.5 C55.1,42.1 57.1,41.2 59.4,41.2 C64.5,41.2 68.6,45.3 68.6,50.4 C68.6,51 68.5,51.6 68.3,52.2 C69.7,53.3 70.6,55.1 70.6,57 C70.6,60.9 67.5,64 63.6,64 Z" />
+
+        <!-- Thermometer: Black Cutout Backplate (Separates thermometer cleanly from cloud line) -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M70,35 C67.2,35 65,37.2 65,40 V55.5 C62.2,57.4 61,60.8 61.9,64.1 C62.9,67.7 66.3,70.2 70,70 C73.9,69.8 77.1,66.6 77.2,62.7 C77.3,59.3 75.6,56.5 75,55.4 V40 C75,37.2 72.8,35 70,35 Z" />
+
+        <!-- Thermometer: White Glass Tube & Bulb Outline -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2.0"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:pathData="M67.5,55.5 V40 C67.5,38.6 68.6,37.5 70,37.5 C71.4,37.5 72.5,38.6 72.5,40 V55.5 C74.5,56.8 75.8,59.1 75.8,61.7 C75.8,64.9 73.2,67.5 70,67.5 C66.8,67.5 64.2,64.9 64.2,61.7 C64.2,59.1 65.5,56.8 67.5,55.5 Z" />
+
+        <!-- Thermometer: Red Line & Bulb in the Middle -->
+        <path
+            android:fillColor="#FF3B30"
+            android:strokeColor="#FF3B30"
+            android:strokeWidth="1.8"
+            android:strokeLineCap="round"
+            android:pathData="M70,61.7 L70,44 M70,64.5 A2.8,2.8 0 1,1 70,58.9 A2.8,2.8 0 1,1 70,64.5 Z" />
+
+        <!-- Thermometer: White Scale Tick Marks -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="1.2"
+            android:strokeLineCap="round"
+            android:pathData="M74.5,42 H77 M74.5,46.5 H77 M74.5,51 H77" />
+    </group>
+
+</vector>
